@@ -14,3 +14,21 @@ PRIMARY KEY (id)
 );
 GRANT ALL ON standings.* TO 'sampleAdmin';
 GRANT SELECT, INSERT, UPDATE ON standings.* TO 'sampleUser';
+CREATE OR REPLACE VIEW standings AS
+SELECT team, sum(point) AS pts, sum(win) AS W, sum(draw) AS D, sum(lose) AS L,
+sum(GF) AS GFs, sum(GA) AS GAs, sum(goals_difference) AS GDs
+FROM (
+SELECT home AS team, 
+IF (goals_for > goals_against, 3, IF (goals_for = goals_against, 1, 0)) AS point,
+IF (goals_for > goals_against, 1, 0) AS win,
+IF (goals_for = goals_against, 1, 0) AS draw,
+IF (goals_for < goals_against, 1, 0) AS lose,
+goals_for AS GF, goals_against AS GA, goals_for - goals_against AS goals_difference FROM matches
+UNION ALL
+SELECT away AS team, 
+IF (goals_for < goals_against, 3, IF (goals_for = goals_against, 1, 0)) AS point,
+IF (goals_for < goals_against, 1, 0) AS win,
+IF (goals_for = goals_against, 1, 0) AS draw,
+IF (goals_for > goals_against, 1, 0) AS lose,
+goals_against AS GA, goals_for AS GF, goals_against - goals_for AS goals_difference FROM matches) AS tbl
+GROUP BY team ORDER BY pts DESC, GDs DESC, GFs DESC;

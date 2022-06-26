@@ -21,12 +21,20 @@ public class StandingsController {
 	
 	@Autowired
 	private MatchesRepository matchesRepository;
+	@Autowired
+	private StandingsRepository standingsRepository;
+	
+	@GetMapping("/matches")
+	public String matches(Model model) {
+		List<Match> matches = matchesRepository.findByOrderByDateAscHomeAsc();
+		model.addAttribute("matches", matches);
+		return "matches";
+	}
 	
 	@GetMapping("/standings")
 	public String standings(Model model) {
-		List<Match> matches = matchesRepository.findByOrderByDateAscHomeAsc();
-		System.err.println(matches.get(0).getDate());
-		model.addAttribute("matches", matches);
+		List<Standing> standings = standingsRepository.findAll();
+		model.addAttribute("standings", standings);
 		return "standings";
 	}
 	
@@ -114,6 +122,6 @@ public class StandingsController {
 		match.setGoalsAgainst(goalsAgainst);
 		matchesRepository.saveAndFlush(match);
 		
-		return standings(model);
+		return matches(model);
 	}
 }

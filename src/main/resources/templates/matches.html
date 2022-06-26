@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.theymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Standings</title>
+</head>
+<body>
+<h1>順位表</h1>
+<hr>
+<a href="/standings">順位表</a>&nbsp;<a href="/new_match">試合登録</a>
+<hr>
+<table border="1">
+<tr>
+	<th>日付</th>
+	<th>節</th>
+	<th>ホーム</th>
+	<th>結果</th>
+	<th>アウェイ</th>
+<tr th:each="match: ${matches}">
+	<td th:text="${match.date}"></td>
+	<td th:text="${match.section}"></td>
+	<td th:text="${match.home}"></td>
+	<td th:text="|${match.goalsFor} - ${match.goalsAgainst}|"></td>
+	<td th:text="${match.away}"></td>
+</tr>
+</table>
+</body>
+</html>
