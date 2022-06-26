@@ -1,0 +1,2 @@
+# standings_springboot
+サッカーの勝敗表をSpringbootで作ってみます。
