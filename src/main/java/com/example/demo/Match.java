@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Match {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private int section;
 	private LocalDate date;
 	private String home;
@@ -24,10 +24,10 @@ public class Match {
 	@Column(name="goals_against")
 	private int goalsAgainst;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public int getSection() {

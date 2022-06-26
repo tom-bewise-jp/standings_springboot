@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add New Match</title>
+</head>
+<body>
+<h1>試合情報の登録</h1>
+<hr>
+<p style="color: red;" th:text="${error}"></p>
+<form action="new_match" method="post">
+	<input type="date" name="date">
+	<input type="number" name="section"　min="1" max="34" style="width:3em">節
+	<select name="home">
+		<option th:each="team: ${teams}" th:value="${team}" th:text="${team}"></option>
+	</select>
+	<input type="number" name="goals_for" min="0" style="width:3em">
+	-
+	<input type="number" name="goals_against" min="0" style="width:3em">
+	<select name="away">
+		<option th:each="team: ${teams}" th:value="${team}" th:text="${team}"></option>
+	</select>
+	<input type="submit" value="登録">
+</form>
+</body>
+</html>
