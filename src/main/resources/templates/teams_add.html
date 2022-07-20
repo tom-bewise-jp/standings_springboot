@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>チーム一覧</title>
+</head>
+<body>
+<h1>チーム名追加</h1>
+<hr>
+<p><a href="/teams">チーム一覧に戻る</a></p>
+<form action="/teams/add" method="post">
+<table border="1">
+	<tr>
+		<th>チーム名</th>
+		<td><input type="text" name="name"></td>
+	</tr>
+	<tr>
+		<th>略称</th>
+		<td><input type="text" name="abbr"></td>
+	</tr>
+</table>
+<input type="submit" value="登録">
+</form>
+</body>
+</html>

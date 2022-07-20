@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>チーム一覧</title>
+</head>
+<body>
+<h1>チーム名編集</h1>
+<hr>
+<p><a href="/teams">チーム一覧に戻る</a></p>
+<form action="/teams/edit" method="post">
+	<input type="hidden" name="id" th:value="${id}">
+	<table border="1">
+		<tr>
+			<th>チーム名</th>
+			<td><input type="text" name="name" th:value="${name}"></td>
+		</tr>
+		<tr>
+			<th>略称</th>
+			<td><input type="text" name="abbr" th:value="${abbr}"></td>
+		</tr>
+	</table>
+	<input type="submit" value="更新">
+</form>
+</body>
+</html>

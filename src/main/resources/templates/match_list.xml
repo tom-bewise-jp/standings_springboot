@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<standings xmlns="http://jp.bewise.standings.match" xmlns:th="http://www.thymeleaf.org">
+	<matches>
+		<match th:each="match: ${matches}">
+			<date th:text="${match.date}" />
+			<section th:text="${match.section}" />
+			<home th:text="${match.home}" />
+			<away th:text="${match.away}" />
+			<goalsFor th:text="${match.goalsFor}" />
+			<goalsAgainst th:text="${match.goalsAgainst}" />
+		</match>
+	</matches>
+</standings>
